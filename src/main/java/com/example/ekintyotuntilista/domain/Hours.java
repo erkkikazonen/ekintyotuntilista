@@ -1,6 +1,6 @@
 package com.example.ekintyotuntilista.domain;
 
-import java.util.Date;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,21 +16,21 @@ public class Hours {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private Date date;
 	private Double hours;
 	private Double hourlywage;
 	
 	@ManyToOne
 	@JoinColumn(name = "userid")
-	private User user;
+	private AppUser user;
 	
+
 	public Hours() {
 		
 	}
 	
-	public Hours(Date date, Double hours, Double hourlywage) {
+	public Hours(AppUser user, Double hours, Double hourlywage) {
 		super();
-		this.date = date;
+		this.user = user;
 		this.hours = hours;
 		this.hourlywage = hourlywage;
 	}
@@ -40,12 +40,14 @@ public class Hours {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Date getDate() {
-		return date;
+	public AppUser getUser() {
+		return user;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	
+	public void setUser(AppUser user) {
+		this.user = user;
 	}
+	
 	public Double getHours() {
 		return hours;
 	}

@@ -2,7 +2,7 @@ package com.example.ekintyotuntilista.domain;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends CrudRepository<AppUser, Long> {
 
-	User findByUsername(String username);
+	AppUser findByUsername(String username);
 }

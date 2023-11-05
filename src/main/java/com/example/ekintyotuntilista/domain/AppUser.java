@@ -12,30 +12,25 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class User {
+public class AppUser {
 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long userid;
 	private String username;
-	private String paswordHash;
-	private String role;
-	
-	
+		
 	@JsonIgnore	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
 	private List<Hours> hours;
 	
-	public User() {
+	public AppUser() {
 		
 	}
 	
-	public User(String username, String paswordHash, String role) {
+	public AppUser(String username) {
 		super();
 		this.username = username;
-		this.paswordHash = paswordHash;
-		this.role = role;
 	}
 	public Long getUserid() {
 		return userid;
@@ -49,18 +44,5 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getPaswordHash() {
-		return paswordHash;
-	}
-	public void setPaswordHash(String paswordHash) {
-		this.paswordHash = paswordHash;
-	}
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
-	
 	
 }
