@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Tuntilista</title>
+<title>Payroll Report</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <!-- Include Bootstrap CSS -->
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
@@ -10,12 +10,21 @@
 <body>
 	<div class="container">
 		<div class="col-md-4">
-			<h1>Tuntilista</h1>
+			<h2>Payroll Report</h2>
+		</div>
+		<div class="col-md-4">
+			<i>Welcome <b sec:authentication="name"></b>, your role is <b
+				sec:authentication="principal.authorities"></b>
+		</div>
+		<div class="col-md-4" style="padding: 20px 0">
+			<form th:action="@{/logout}" method="post">
+				<input type="submit" value="Sign Out" class="btn btn-sm btn-danger" />
+			</form>
 		</div>
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>User</th>
+					<th>Job description</th>
 					<th>Hours</th>
 					<th>Hourly wage</th>
 					<th>Salary</th>
@@ -23,12 +32,16 @@
 			</thead>
 			<tbody>
 				<tr th:each="hours : ${hours}">
-					<td th:text="${hours.user.username}"></td>
+					<td th:text="${hours.job.jobname}"></td>
 					<td th:text="${hours.hours}"></td>
 					<td th:text="${hours.hourlywage + ' €'}"></td>
 					<td th:text="${(hours.hours * hours.hourlywage) + ' €'}"></td>
 				</tr>
 			</tbody>
 		</table>
+		<td sec:authorize="hasAuthority('ADMIN')"><a href="/add"
+			class="btn btn-success">Add Hours</a> <!-- Apply Bootstrap button style -->
+	</div>
 	</div>
 </body>
+</html>

@@ -1,7 +1,5 @@
 package com.example.ekintyotuntilista.domain;
 
-
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,17 +18,17 @@ public class Hours {
 	private Double hourlywage;
 	
 	@ManyToOne
-	@JoinColumn(name = "userid")
-	private AppUser user;
+	@JoinColumn(name = "jobid")
+	private JobDescription job;
 	
 
 	public Hours() {
 		
 	}
 	
-	public Hours(AppUser user, Double hours, Double hourlywage) {
+	public Hours(JobDescription job, Double hours, Double hourlywage) {
 		super();
-		this.user = user;
+		this.job = job;
 		this.hours = hours;
 		this.hourlywage = hourlywage;
 	}
@@ -40,12 +38,12 @@ public class Hours {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public AppUser getUser() {
-		return user;
+	public JobDescription getJob() {
+		return job;
 	}
 	
-	public void setUser(AppUser user) {
-		this.user = user;
+	public void setUser(JobDescription job) {
+		this.job = job;
 	}
 	
 	public Double getHours() {
