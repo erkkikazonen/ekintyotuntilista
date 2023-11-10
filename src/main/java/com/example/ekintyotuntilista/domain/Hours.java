@@ -42,7 +42,7 @@ public class Hours {
 		return job;
 	}
 	
-	public void setUser(JobDescription job) {
+	public void setJob(JobDescription job) {
 		this.job = job;
 	}
 	

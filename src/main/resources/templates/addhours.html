@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add hours</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Add hours</h1>
+	<div>
+		<form th:object="${hours}" th:action="@{save}" action="#" method="post">
+			<div class="form-group">
+		  		<label for="joblist">Job description</label>
+				 <select id="joblist" th:field="*{job}" class="form-control">
+	       			<option th:each="job: ${jobs}" th:value="${job.jobid}" th:text="${job.jobname}"></option>
+	    		</select>
+			</div>
+			<div class="form-group">
+		  		<label for="hours">Hours</label>
+				<input type="text" id="hours" th:field="*{hours}" class="form-control" />
+			</div>
+			<div class="form-group">
+			  	<label for="hourlywage">Hourly wage</label>
+				<input type="text" id="hourlywage" th:field="*{hourlywage}" class="form-control" />
+			</div>
+
+			<input type="submit" value="Save" class="btn btn-primary"></input>
+		</form>
+	</div>
+</body>
+</html>
