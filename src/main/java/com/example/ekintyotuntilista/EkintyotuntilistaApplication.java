@@ -25,11 +25,13 @@ public class EkintyotuntilistaApplication {
 	public CommandLineRunner demo(JobRepository jrepository, HoursRepository hrepository, AppUserRepository urepository) {
 		return (args) -> {
 
+			// Työ kategoriat
 			jrepository.save(new JobDescription("Programming"));
 			jrepository.save(new JobDescription("Consulting"));
 			jrepository.save(new JobDescription("Sales"));
 			jrepository.save(new JobDescription("Cleaning"));
 				
+			// Valmiit esimerkit töistä
 			Hours h1 = new Hours(jrepository.findByJobname("Programming"), 16.0, 45.0);
 			Hours h2 = new Hours(jrepository.findByJobname("Consulting"), 8.0, 35.0);
 			Hours h3 = new Hours(jrepository.findByJobname("Sales"), 7.5, 14.0);
@@ -39,6 +41,9 @@ public class EkintyotuntilistaApplication {
 			hrepository.save(h3);
 			hrepository.save(h4);
 			
+			// Valmiit käyttäjätunnukset
+			// Admin pystyy lisäämään, poistamaan ja muokkaamaan listoja
+			// User näkee listan
 			AppUser user1 = new AppUser("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
 			AppUser user2 = new AppUser("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
 			urepository.save(user1);

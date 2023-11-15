@@ -58,5 +58,6 @@ public class Hours {
 	public void setHourlywage(Double hourlywage) {
 		this.hourlywage = hourlywage;
 	}
-	
+
+		
 }

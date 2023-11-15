@@ -4,7 +4,14 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface HoursRepository extends CrudRepository<Hours, Double> {
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
-	List<Hours> findById(long id);
+@Repository
+public interface HoursRepository extends CrudRepository<Hours, Long> {
+
+    List<Hours> findById(long id);
+
+    @Query("SELECT SUM(h.hourlywage * h.hours) FROM Hours h")
+    Double getTotalEarnings();
 }
