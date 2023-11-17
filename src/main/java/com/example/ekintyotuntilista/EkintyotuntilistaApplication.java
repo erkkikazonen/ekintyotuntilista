@@ -32,10 +32,10 @@ public class EkintyotuntilistaApplication {
 			jrepository.save(new JobDescription("Cleaning"));
 				
 			// Valmiit esimerkit töistä
-			Hours h1 = new Hours(jrepository.findByJobname("Programming"), 16.0, 45.0);
-			Hours h2 = new Hours(jrepository.findByJobname("Consulting"), 8.0, 35.0);
-			Hours h3 = new Hours(jrepository.findByJobname("Sales"), 7.5, 14.0);
-			Hours h4 = new Hours(jrepository.findByJobname("Cleaning"), 10.0, 11.0);
+			Hours h1 = new Hours(jrepository.findByJobname("Programming"), 16, 45);
+			Hours h2 = new Hours(jrepository.findByJobname("Consulting"), 8, 35);
+			Hours h3 = new Hours(jrepository.findByJobname("Sales"), 7, 14);
+			Hours h4 = new Hours(jrepository.findByJobname("Cleaning"), 10, 11);
 			hrepository.save(h1);
 			hrepository.save(h2);
 			hrepository.save(h3);

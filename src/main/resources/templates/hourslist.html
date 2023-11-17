@@ -1,57 +1,62 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Payroll Report</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <!-- Include Bootstrap CSS -->
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<title>Payroll Report</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- Include Bootstrap CSS -->
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-    <div class="container">
-        <div class="col-md-4">
-            <h2>Payroll Report</h2>
-        </div>
-        <div class="col-md-4">
-            <i>Welcome <b sec:authentication="name"></b>, your role is <b sec:authentication="principal.authorities"></b></i>
-        </div>
-        <div class="col-md-4" style="padding: 20px 0">
-            <form th:action="@{/logout}" method="post">
-                <input type="submit" value="Sign Out" class="btn btn-sm btn-danger" />
-            </form>
-        </div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Job Description</th>
-                    <th>Hours</th>
-                    <th>Hourly Wage</th>
-                    <th>Salary</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="hours : ${hours}">
-                    <td th:text="${hours.job.jobname}"></td>
-                    <td th:text="${hours.hours}"></td>
-                    <td th:text="${hours.hourlywage + ' €'}"></td>
-                    <td th:text="${(hours.hours * hours.hourlywage) + ' €'}"></td>
-                    <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${hours.id})}" class="btn btn-primary">Edit</a></td> 
-                    <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${hours.id})}" class="btn btn-danger">Delete</a></td> 
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td th:style="'font-weight: bold;'">Total Salary:</td>
-                    <td th:text="${totalEarnings + ' €'}"></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tfoot>
-        </table>
-        <td sec:authorize="hasAuthority('ADMIN')"><a href="/add" class="btn btn-success">Add Hours</a></td>
-    </div>
+	<div class="container">
+		<div class="col-md-4">
+			<h2>Payroll Report</h2>
+		</div>
+		<div class="col-md-4">
+			<i>Welcome <b sec:authentication="name"></b>, your role is <b
+				sec:authentication="principal.authorities"></b></i>
+		</div>
+		<div class="col-md-4" style="padding: 20px 0">
+			<form th:action="@{/logout}" method="post">
+				<input type="submit" value="Sign Out" class="btn btn-sm btn-danger" />
+			</form>
+		</div>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Job Description</th>
+					<th>Hours</th>
+					<th>Hourly Wage</th>
+					<th>Salary</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="hours : ${hours}">
+					<td th:text="${hours.job.jobname}"></td>
+					<td th:text="${hours.hours}"></td>
+					<td th:text="${hours.hourlywage + ' €'}"></td>
+					<td th:text="${(hours.hours * hours.hourlywage) + ' €'}"></td>
+					<td sec:authorize="hasAuthority('ADMIN')"><a
+						th:href="@{/edit/{id}(id=${hours.id})}" class="btn btn-primary">Edit</a></td>
+					<td sec:authorize="hasAuthority('ADMIN')"><a
+						th:href="@{/delete/{id}(id=${hours.id})}" class="btn btn-danger">Delete</a></td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td></td>
+					<td></td>
+					<td th:style="'font-weight: bold;'">Total Salary:</td>
+					<td th:text="${totalEarnings != null ? totalEarnings + ' €' : ''}"></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tfoot>
+		</table>
+		<td sec:authorize="hasAuthority('ADMIN')"><a href="/add"
+			class="btn btn-success">Add Hours</a></td>
+	</div>
 </body>
 </html>

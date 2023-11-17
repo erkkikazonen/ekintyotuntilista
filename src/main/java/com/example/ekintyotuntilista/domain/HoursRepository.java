@@ -12,6 +12,8 @@ public interface HoursRepository extends CrudRepository<Hours, Long> {
 
     List<Hours> findById(long id);
 
+    List<Hours> findAllByJobJobname(String jobname);
+
     @Query("SELECT SUM(h.hourlywage * h.hours) FROM Hours h")
-    Double getTotalEarnings();
+    int getTotalEarnings();
 }
