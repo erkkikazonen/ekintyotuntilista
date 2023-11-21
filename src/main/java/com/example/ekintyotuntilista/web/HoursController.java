@@ -36,7 +36,10 @@ public class HoursController {
         List<Hours> allHours = (List<Hours>) hrepository.findAll();
         model.addAttribute("hours", allHours);
 
-        int totalEarnings = hrepository.getTotalEarnings();
+        Integer totalEarnings = hrepository.getTotalEarnings();
+        if (totalEarnings == null) {
+            totalEarnings = 0;
+        }
         model.addAttribute("totalEarnings", totalEarnings);
 
         return "hourslist";
